@@ -10,7 +10,7 @@ Background:
 Scenario: Check for SSL vulnerabilities
   When I launch a "curl" attack with:
     """
-    ./test/resources/checks/ssl/ssl-vulns.sh <hostname>
+    ./ssl-vulns.sh <hostname>
     """
   Then the output should contain:
     """
@@ -20,7 +20,7 @@ Scenario: Check for SSL vulnerabilities
   Scenario: Check for soon to expire ssl certs
     When I launch a "curl" attack with:
     """
-    ./test/resources/checks/ssl/ssl-cert.sh <hostname>
+    ./ssl-cert.sh <hostname>
     """
     Then the output should contain:
     """
