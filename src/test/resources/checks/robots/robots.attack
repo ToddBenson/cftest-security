@@ -1,0 +1,22 @@
+@slow
+
+Feature: curl robots attack
+
+Background:
+Given "curl" is installed
+And the following environment variables:
+    | name     | environment_variable_name|
+    | hostname | HOSTNAME                  |
+
+Scenario: Detects robots.txt files on this host
+When I launch a "curl" attack with:
+   """
+   curl https://<hostname>/robots.txt --head
+   """
+
+Then the output should contain:
+   """
+   HTTP/1.1 404 Not Found
+   """
+
+

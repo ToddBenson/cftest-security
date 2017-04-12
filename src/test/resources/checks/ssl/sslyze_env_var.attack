@@ -1,0 +1,197 @@
+@reallyslow
+
+Feature: Run sslyze against a target
+
+Background:
+  Given "sslyze" is installed
+  And the following environment variables:
+    | name     | environment_variable_name |
+    | hostname | HOSTNAME |
+
+Scenario: Ensure rejected SSLv2 Cipher Suites
+  When I launch an "sslyze" attack with:
+    """
+    sslyze --sslv2 --hide_rejected_ciphers <hostname>:443
+    """
+  Then the output should match:
+    """
+    Server rejected all cipher suites
+    """
+Scenario: Ensure accepted SSLv3 Cipher Suites
+  When I launch an "sslyze" attack with:
+    """
+    sslyze --sslv3 --hide_rejected_ciphers <hostname>:443
+    """
+  Then the output should match:
+    """
+    TLS_RSA_WITH_AES_128_CBC_SHA.*128 bits
+    """
+  And the output should match:
+    """
+    TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA.*256 bits
+    """
+  And the output should match:
+    """
+    TLS_RSA_WITH_AES_256_CBC_SHA.*256 bits
+    """
+  And the output should match:
+    """
+    TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA.*128 bits
+    """
+  And the output should match:
+    """
+    TLS_RSA_WITH_AES_128_CBC_SHA.*128 bits
+    """
+  And the output should match:
+    """
+    TLS_RSA_WITH_RC4_128_SHA.*128 bits
+    """
+  And the output should match:
+    """
+    TLS_RSA_WITH_RC4_128_MD5.*128 bits
+    """
+  And the output should match:
+    """
+    TLS_RSA_WITH_3DES_EDE_CBC_SHA.*112 bits
+    """
+Scenario: Ensure accepted TLSv1 Cipher Suites
+  When I launch an "sslyze" attack with:
+    """
+    sslyze --tlsv1 --hide_rejected_ciphers <hostname>:443
+    """
+  Then the output should match:
+    """
+    TLS_RSA_WITH_AES_128_CBC_SHA.*128 bits
+    """
+  And the output should match:
+    """
+    TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA.*256 bits
+    """
+  And the output should match:
+    """
+    TLS_RSA_WITH_AES_256_CBC_SHA.*256 bits
+    """
+  And the output should match:
+    """
+    TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA.*128 bits
+    """
+  And the output should match:
+    """
+    TLS_RSA_WITH_AES_128_CBC_SHA.*128 bits
+    """
+  And the output should match:
+    """
+    TLS_RSA_WITH_RC4_128_SHA.*128 bits
+    """
+  And the output should match:
+    """
+    TLS_RSA_WITH_RC4_128_MD5.*128 bits
+    """
+  And the output should match:
+    """
+    TLS_RSA_WITH_3DES_EDE_CBC_SHA.*112 bits
+    """
+Scenario: Ensure accepted TLSv1_1 Cipher Suites
+  When I launch an "sslyze" attack with:
+    """
+    sslyze --tlsv1_1 --hide_rejected_ciphers <hostname>:443
+    """
+  Then the output should match:
+    """
+    TLS_RSA_WITH_AES_128_CBC_SHA.*128 bits
+    """
+  And the output should match:
+    """
+    TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA.*256 bits
+    """
+  And the output should match:
+    """
+    TLS_RSA_WITH_AES_256_CBC_SHA.*256 bits
+    """
+  And the output should match:
+    """
+    TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA.*128 bits
+    """
+  And the output should match:
+    """
+    TLS_RSA_WITH_AES_128_CBC_SHA.*128 bits
+    """
+  And the output should match:
+    """
+    TLS_RSA_WITH_RC4_128_SHA.*128 bits
+    """
+  And the output should match:
+    """
+    TLS_RSA_WITH_RC4_128_MD5.*128 bits
+    """
+  And the output should match:
+    """
+    TLS_RSA_WITH_3DES_EDE_CBC_SHA.*112 bits
+    """
+Scenario: Ensure accepted TLSv1_2 Cipher Suites
+  When I launch an "sslyze" attack with:
+    """
+    sslyze --tlsv1_2 --hide_rejected_ciphers <hostname>:443
+    """
+  Then the output should match:
+    """
+    TLS_RSA_WITH_AES_128_GCM_SHA256.*128 bits
+    """
+  And the output should match:
+    """
+    TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA.*256 bits
+    """
+  And the output should match:
+    """
+    TLS_RSA_WITH_AES_256_CBC_SHA.*256 bits
+    """
+  And the output should match:
+    """
+    TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256.*128 bits
+    """
+  And the output should match:
+    """
+    TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256.*128 bits
+    """
+  And the output should match:
+    """
+    TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA.*128 bits
+    """
+  And the output should match:
+    """
+    TLS_RSA_WITH_AES_128_GCM_SHA256.*128 bits
+    """
+  And the output should match:
+    """
+    TLS_RSA_WITH_AES_128_CBC_SHA.*128 bits
+    """
+  And the output should match:
+    """
+    TLS_RSA_WITH_RC4_128_SHA.*128 bits
+    """
+  And the output should match:
+    """
+    TLS_RSA_WITH_RC4_128_MD5.*128 bits
+    """
+  And the output should match:
+    """
+    TLS_RSA_WITH_3DES_EDE_CBC_SHA.*112 bits
+    """
+Scenario: Ensure SSL Certificate is Trusted
+  When I launch an "sslyze" attack with:
+    """
+    sslyze --certinfo_basic <hostname>:443
+    """
+  Then the output should match:
+    """
+    Certificate is trusted
+    """
+Scenario: Ensure Hostname Validation
+  When I launch an "sslyze" attack with:
+    """
+    sslyze --certinfo_basic <hostname>:443
+    """
+  Then the output should match:
+    """
+    Name matches
+    """

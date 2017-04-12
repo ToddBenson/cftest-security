@@ -1,0 +1,28 @@
+@reallyslow
+Feature: Run testssl against a target
+
+Background:
+  Given "curl" is installed
+  And the following environment variables:
+    | name     | environment_variable_name |
+    | hostname | HOSTNAME |
+
+Scenario: Check for SSL vulnerabilities
+  When I launch a "curl" attack with:
+    """
+    ../../tests/ssl/ssl-vulns.sh <hostname>
+    """
+  Then the output should contain:
+    """
+    1\n
+    """
+
+  Scenario: Check for soon to expire ssl certs
+    When I launch a "curl" attack with:
+    """
+    ../../tests/ssl/ssl-cert.sh <hostname>
+    """
+    Then the output should contain:
+    """
+    1\n
+    """

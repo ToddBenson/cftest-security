@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+	<testsuite name="https://quote.ds-csaa.io" errors="0" failures="11" skips="7" tests="24" time="100">
+		<testcase classname="corechecks" name="Http200Check" time="0.315645" />
+		<testcase classname="corechecks" name="StrictTransportSecurityPresent" time="9.9e-05">
+			<failure>Strict-Transport-Security header not found.</failure>
+		</testcase>
+		<testcase classname="corechecks" name="XFrameOptionsPresent" time="2.1e-05">
+			<failure>X-Frame-Options header not found.</failure>
+		</testcase>
+		<testcase classname="corechecks" name="HttpOnlyAttributePresent" time="1.9e-05" />
+		<testcase classname="corechecks" name="SecureAttributePresent" time="7.4e-05">
+			<failure>Secure cookie attribute is not set</failure>
+		</testcase>
+		<testcase classname="corechecks" name="HttpsLoginForm" time="0.007916">
+			<skipped>There are no login forms on this page</skipped>
+		</testcase>
+		<testcase classname="corechecks" name="HttpsResourceOnHttpsLink" time="0.006676" />
+		<testcase classname="corechecks" name="InlineJS" time="0.005092">
+			<failure>Inline JavaScript found</failure>
+		</testcase>
+		<testcase classname="corechecks" name="WebTouch" time="0.076148" />
+		<testcase classname="corechecks" name="StrictTransportSecurityPresent" time="2.2e-05">
+			<failure>Strict-Transport-Security header not found.</failure>
+		</testcase>
+		<testcase classname="corechecks" name="XFrameOptionsPresent" time="1.4e-05">
+			<failure>X-Frame-Options header not found.</failure>
+		</testcase>
+		<testcase classname="corechecks" name="HttpOnlyAttributePresent" time="1.1e-05">
+			<skipped>No cookie is set by this response.</skipped>
+		</testcase>
+		<testcase classname="corechecks" name="SecureAttributePresent" time="2.3e-05">
+			<skipped>No cookie is set by this response.</skipped>
+		</testcase>
+		<testcase classname="corechecks" name="HttpsLoginForm" time="0.00518">
+			<skipped>There are no login forms on this page</skipped>
+		</testcase>
+		<testcase classname="corechecks" name="HttpsResourceOnHttpsLink" time="0.005655" />
+		<testcase classname="corechecks" name="InlineJS" time="0.005221">
+			<failure>Inline JavaScript found</failure>
+		</testcase>
+		<testcase classname="corechecks" name="CSPHeaderCheck" time="0.080836">
+			<failure>No Content-Security-Policy or Content-Security-Policy-Report-Only in headers</failure>
+		</testcase>
+		<testcase classname="corechecks" name="StrictTransportSecurityPresent" time="1.9e-05">
+			<failure>Strict-Transport-Security header not found.</failure>
+		</testcase>
+		<testcase classname="corechecks" name="XFrameOptionsPresent" time="1.9e-05">
+			<failure>X-Frame-Options header not found.</failure>
+		</testcase>
+		<testcase classname="corechecks" name="HttpOnlyAttributePresent" time="1.3e-05">
+			<skipped>No cookie is set by this response.</skipped>
+		</testcase>
+		<testcase classname="corechecks" name="SecureAttributePresent" time="2.5e-05">
+			<skipped>No cookie is set by this response.</skipped>
+		</testcase>
+		<testcase classname="corechecks" name="HttpsLoginForm" time="0.005162">
+			<skipped>There are no login forms on this page</skipped>
+		</testcase>
+		<testcase classname="corechecks" name="HttpsResourceOnHttpsLink" time="0.005558" />
+		<testcase classname="corechecks" name="InlineJS" time="0.004906">
+			<failure>Inline JavaScript found</failure>
+		</testcase>
+	</testsuite>
+</testsuites>

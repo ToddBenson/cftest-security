@@ -1,0 +1,18 @@
+@reallyslow
+Feature: Run SQLMap against quote vehicle
+
+@quote
+Scenario: Identify SQL Injection vulnerability
+	Given: "sqlmap" is installed
+	And the following environment variables:
+		| name | environment_variable_name |
+		| hostname | HOSTNAME |
+
+	When I launch a "sqlmap" attack with:
+		"""
+		python  <sqlmap_path> sqlmap -u https://<hostname>/vehicle/details?year=2010&manufacturer=INFINITI&model=EX35/JOURNEY&style=STATION%20WAGION --level=5 --dbms "Microsoft SQL Server" --risk=2 --technique=T --auth-type=Basic --auth-cred=quote:csaa --batch --flush-session -v 0
+		"""
+	Then the output should contain:
+		"""
+		is vulnerable
+		"""

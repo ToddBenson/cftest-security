@@ -1,0 +1,18 @@
+@reallyslow
+
+Feature: nmap attacks
+  Background:
+    Given "nmap" is installed
+    And the following environment variables:
+      | name       | environment_variable_name |
+      | hostname  | HOSTNAME |
+
+   Scenario: Verify port 80 is open using the nmap fast flag
+    When I launch an "nmap" attack with:
+      """
+      nmap -F -open -Pn <hostname>
+      """
+    Then the output should match:
+      """
+      443\/tcp.*open.*https
+      """

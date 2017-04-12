@@ -1,0 +1,23 @@
+@reallyslow
+
+Feature: Run garmr scan on a URL
+
+Scenario: Use Garmr to scan a website for the Mozilla opioniated security requirements
+  Given "garmr" is installed
+  And the following environment variables:
+    | name     | environment_variable_name |
+    | hostname | HOSTNAME   |
+  When I launch a "garmr" attack with:
+    """
+    garmr -u https://<hostname> -o my_garmr_output.xml
+    """
+  Then it should pass with:
+    """
+    [Garmr.corechecks.Http200Check] Fail The response code was 302
+    """
+  And the file "my_garmr_output.xml" should contain XML:
+    | css                                      |
+    | testcase[name="Http200Check"] failure    |
+  And the file "my_garmr_output.xml" should not contain XML:
+    | css                                      |
+    | testcase[name="SCSPHeaderCheck"] failure |

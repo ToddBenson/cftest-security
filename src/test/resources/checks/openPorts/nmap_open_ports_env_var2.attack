@@ -1,0 +1,23 @@
+@reallyslow
+
+Feature: nmap attacks
+  Background:
+    Given "nmap" is installed
+    And the following environment variables:
+      | name       | environment_variable_name |
+      | hostname   | HOSTNAME |
+  
+   Scenario: Verify expected open ports in Production environment using the nmap fast flag
+    When I launch an "nmap" attack with:
+      """
+      nmap -F -open -Pn <hostname>
+      """
+    Then the output should match:
+      """
+      80\/tcp.*open
+      """
+    And the output should match:
+      """
+      443\/tcp.*open
+      """
+
