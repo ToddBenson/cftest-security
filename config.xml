@@ -10,13 +10,13 @@
     <defaultDriver path="src/test/resources/drivers/chromedriver-mac">Chrome</defaultDriver> -->
 
     <!-- Base URL of the application to test -->
-    <baseUrl>http://localhost:8080/</baseUrl>
+    <baseUrl>https://tgbenson-helloworld.cfapps.io/</baseUrl>
 
     <!-- A Java class to hold the Selenium steps to test the application in depth. Optionally required for in-depth authn/z and session management testing. -->
     <class>net.continuumsecurity.examples.ropeytasks.RopeyTasksApplication</class>
 
     <sslyze>
-        <path>/opt/sslyze/sslyze_cli.py</path>
+        <path>/usr/local/bin/sslyze</path>
         <option>--regular</option>
     </sslyze>
 

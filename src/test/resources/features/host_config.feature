@@ -10,4 +10,4 @@ Feature: Host Configuration
     Then the ports should be <ports>
     Examples:
       | host      | startPort | endPort | threads | timeout | state | ports  |
-      | localhost | 1         | 65535   | 100     | 500     | open  | 80,443 |
+      | localhost | 1         | 65535   | 100     | 500     | open  | 80,443,22 |

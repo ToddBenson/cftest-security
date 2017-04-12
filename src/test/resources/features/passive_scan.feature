@@ -12,5 +12,8 @@ Feature: Passive Application Security Scanning
     And the application is spidered
     And the following false positives are removed
       |url                    |parameter          |cweId      |wascId   |
+      |https://tgbenson-helloworld.cfapps.io/greeting| X-Frame-Options|16|15|
+      |https://tgbenson-helloworld.cfapps.io/greeting.html| X-Frame-Options|16|15|
+      |https://tgbenson-helloworld.cfapps.io/| X-Frame-Options|16|15|
     And the XML report is written to the file build/zap/passive.xml
     Then no Medium or higher risk vulnerabilities should be present

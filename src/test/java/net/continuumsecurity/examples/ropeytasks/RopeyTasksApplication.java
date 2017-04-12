@@ -41,24 +41,20 @@ public class RopeyTasksApplication extends WebApplication implements ILogin,
     @Override
     public boolean isLoggedIn() {
         driver.get(Config.getInstance().getBaseUrl()+"task/list");
-        if (driver.getPageSource().contains("Tasks")) {
-            return true;
-        } else {
-            return false;
-        }
+        return driver.getPageSource().contains("Tasks");
     }
 
     public void viewProfile() {
         driver.findElement(By.linkText("Profile")).click();
     }
 
-    public void viewAlicesProfile() {
-        viewProfile();
-    }
-
-    public void viewBobsProfile() {
-        viewProfile();
-    }
+//    public void viewAlicesProfile() {
+//        viewProfile();
+//    }
+//
+//    public void viewBobsProfile() {
+//        viewProfile();
+//    }
 
     @Override
     public void logout() {
@@ -77,11 +73,17 @@ public class RopeyTasksApplication extends WebApplication implements ILogin,
     }
 
     public void navigate() {
-        openLoginPage();
-        login(Config.getInstance().getDefaultCredentials());
-        viewProfile();
-        search("test");
+//        openLoginPage();
+//        login(Config.getInstance().getDefaultCredentials());
+            driver.get(Config.getInstance().getBaseUrl() + "/");
+            driver.findElement(By.linkText("here")).click();
+            driver.get(Config.getInstance().getBaseUrl() + "/greeting.html");
+//        viewProfile();
+//        search("test");
     }
 
 }
+
+
+
 

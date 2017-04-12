@@ -19,7 +19,7 @@ Feature: Security settings on HTTP headers
   Scenario: Force the use of HTTPS for the base secure Url
     Then the Strict-Transport-Security header is set
 
-  @iriusrisk-cwe-942-cors_permissive
+  @iriusrisk-cwe-942-cors_permissive  @acceptance
   Scenario: Restrict HTML5 Cross Domain Requests to only trusted hosts
     Then the Access-Control-Allow-Origin header must not be: *
 
