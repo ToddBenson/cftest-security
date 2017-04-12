@@ -16,7 +16,7 @@
     <class>net.continuumsecurity.examples.ropeytasks.RopeyTasksApplication</class>
 
     <sslyze>
-        <path>/usr/local/bin/sslyze</path>
+        <path>/usr/bin/sslyze</path>
         <option>--regular</option>
     </sslyze>
 
