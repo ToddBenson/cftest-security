@@ -10,7 +10,8 @@ Background:
 Scenario: Check for SSL vulnerabilities
   When I launch a "curl" attack with:
     """
-    ./ssl-vulns.sh <hostname>
+    pwd
+#    ./ssl-vulns.sh <hostname>
     """
   Then the output should contain:
     """
