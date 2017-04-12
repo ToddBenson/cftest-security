@@ -15,8 +15,8 @@ Scenario Outline: Verify server responds correctly to various HTTP methods
   Then the output should contain "<response>"
   Examples:
     | method | response                       |
-    | delete | 302 | 
-    | patch  | 302 |
-    | trace  | 302 |
-    | track  | 302 |
-    | bogus  | 302 |
+    | delete | 405 |
+    | patch  | 405 |
+    | trace  | 405 |
+    | track  | 405 |
+    | bogus  | 405 |
