@@ -11,4 +11,4 @@ Scenario: Using the arachni, look for cross site scripting and verify no issues 
     """
     arachni http://<url>
     """
-  Then the output should contain "2 issues were detected."
+  Then the output should contain "3 issues were detected."
