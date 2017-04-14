@@ -1,41 +1,57 @@
 
-![](http://www.continuumsecurity.net/images/bdd-security-logo-small.png) 
+# Sample security tests to run in a CI/CD Pipeline
 
-Powered by <img src="https://cucumber.io/images/cucumber-logo.svg" width="200"/>
+This is sample project with security test  
 
-BDD-Security is a security testing framework that uses Behaviour Driven Development concepts to create self-verifying security specifications.
+It includes:
+* _security-BDD_ as the source code repository
+* _GauntLt_ as the code quality analyzer
+* _TestSSL.sh_ to test SSL configuration and vulnerabilities
+* Some custom scripts
 
-The framework is essentially a set of Cucumber-JVM features that are pre-wired with Selenium/WebDriver, [OWASP ZAP](https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project), [SSLyze](https://github.com/nabla-c0d3/sslyze) and [Tennable's Nessus scanner](http://www.tenable.com/products/nessus-vulnerability-scanner).
+The security-BDD features are at src/test/resources/features. The Gauntlt
+tests are at src/test/resources/checks.
+ 
 
-It tests Web Applications and API's from an external point of view and does not require access to the target source code.
+Additionally, the repository for the web application is at _https://github.com/ToddBenson/concourse-maven-spring-boot.git and the Docker image used 
+ is at _https://hub.docker.com/r/tgbenson/security-image/. The Dockerfile is located in the web application repo.
 
-[Documentation on the Wiki](https://github.com/continuumsecurity/bdd-security/wiki)
 
-## Version 2.1 Changelog
-- Upgraded to OWASP ZAP 2.5.0
-- Upgraded ZAP Client API to 1.0.0 from maven central
+The pipeline used:
+![alt text](https://github.com/ToddBenson/concourse-maven-spring-boot/blob/master/screenshot.png "Example Pipeline")
 
-## Version 2.0 Changelog
-- Cucumber-JVM replaced JBehave
-- Gradle replaced Ant
-- Rearranged files to fit Gradle/Maven conventions
-- Removed command line runners. Tests run from gradle
+Every push to Master:
 
-Legacy JBehave version is available on the jbehave branch
+* Runs security acceptance tests with security-BDD (Test marked with @acceptance)
+* Once acceptance tests have passed, the release is pushed to the test instance of Cloud Foundry
+* Also after acceptance test, all other security tests run (experimental, unfinished stories, etc.)
 
-## v0.9.2 Changelog
-- Integrated with OWASP ZAP 2.4.3.
-- Support setting an API KEY for ZAP
 
-## v0.9.1 Changelog
-- HtmlUnitDriver support, it is also the default driver if no other driver is specified in config.xml.  BIG speed improvements.
-- Support for testing non-browser based web services and APIs.  See the [getting started guide](http://www.continuumsecurity.net/bdd-getstarted.html#httpclient) for more details.
-- Removed all TestNG tests.
 
-## v0.9 Changelog
-- Moved tables that are auto-generated during startup into the stories/auto-generated folder. Tables that are user editable stay in the stories/tables folder.
-- Hosts and expected open ports are defined in the config.xml.  Nessus and port scanning stories now read the target data from these files
-- Moved the Nessus false positives to tables/nessus.false_positives.table
-- Moved the OWASP ZAP false positives to tables/zap.false_positives.table
-- Fixed bug in the portscan story
-- Enabled portscanning of multiple hosts
+Hourly:
+
+* Runtime checks with Gauntlt, which include SSL tests, nmap scans, HTTP method detection, etc.
+
+
+Nightly (ToDo)
+
+* A full ZAP dynamic scan
+
+
+During Random Business Hours (ToDo)
+
+* Attack simulations
+
+
+TBD (ToDo)
+
+* Automated auditing of services - AWS, GitHub, etc.
+
+
+## Resources
+
+- <https://github.com/continuumsecurity/bdd-security>
+- <http://gauntlt.org/>
+- <https://testssl.sh/>
+- <https://hub.docker.com/r/tgbenson/security-image/>
+- <https://github.com/ToddBenson/concourse-maven-spring-boot>
