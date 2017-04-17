@@ -9,6 +9,6 @@ Scenario: Using the arachni, look for cross site scripting and verify no issues 
      | url                 | HOSTNAME         |
   When I launch an "arachni" attack with:
     """
-    arachni http://<url>
+    arachni https://<url>
     """
   Then the output should contain "4 issues were detected."
